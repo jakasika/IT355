@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--<head th:replace="index :: head"> </head>-->
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+
+<body>
+<div class="container">
+
+<!--    <header th:replace="index.html :: header"></header>-->
+<!--    <header th:insert="index.html :: header"> </header>-->
+    <header>
+        <div class="row">
+        <nav class="navbar fixed-top navbar-toggleable-xl">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <!--            <a class="navbar-brand" href="#">WebSiteName</a>-->
+                </div>
+                <ul class="nav navbar-nav">
+                    <!--            <li class="active"><a href="/logout">Logout</a></li>-->
+                    <li><a href="/admin/kategorije/">Kategorije</a></li>
+                    <li><a href="/admin/proizvodi/">Proizvodi</a></li>
+                    <li><a href="/admin/kupci/">Kupci</a></li>
+                    <li><a href="/admin/narudzbenice/">Narudzbenice</a></li>
+                </ul>
+            </div>
+        </nav>
+        </div>
+    </header>
+    <div class="row">
+        <h1>Kategorije</h1>
+    </div>
+
+<!--    <div class="row">-->
+<!--        class="btn btn-success"-->
+        <a th:href="@{/admin/kategorije/form}">Dodaj</a>
+<!--    </div>-->
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Naziv</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="kategorija : ${kategorije}">
+            <td th:utext="${kategorija.id}">...</td>
+            <td th:utext="${kategorija.naziv}">...</td>
+
+            <td><a th:href="@{/admin/kategorije/edit/{kategorijaId}(kategorijaId=${kategorija.id})}" th:text="Edit">Title ...</a></td>
+            <td><a th:href="@{/admin/kategorije/delete/{kategorijaId}(kategorijaId=${kategorija.id})}" th:text="Delete">Title ...</a></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="index :: head"> </head>
+<body>
+<div class="container">
+
+        <header th:replace="index :: header"></header>
+
+    <div class="row">
+        <h1>Kupci</h1>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="kupac : ${kupci}">
+            <td th:utext="${kupac.id}">...</td>
+            <td th:utext="${kupac.ime}">...</td>
+            <td th:utext="${kupac.prezime}">...</td>
+            <td th:utext="${kupac.email}">...</td>
+
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

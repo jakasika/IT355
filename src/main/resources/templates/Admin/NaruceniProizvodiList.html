@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="index :: head"> </head>
+<body>
+<div class="container">
+
+    <!--    <header th:replace="index :: header"></header>-->
+
+    <div class="row">
+        <h1>Naruceni proizvodi</h1>
+    </div>
+
+<!--    <div class="row">-->
+<!--&lt;!&ndash;        <a class="btn btn-success" href="/naruceniproizvodi/form">Dodaj</a>&ndash;&gt;-->
+<!--    </div>-->
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Proizvod</th>
+            <th>Cena proizvoda</th>
+            <th>Kolicina</th>
+            <th>Narudzbenica ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="naruceniProizvod : ${naruceniProizvodi}">
+            <td th:utext="${naruceniProizvod.id}">...</td>
+            <td th:utext="${naruceniProizvod.proizvod.naziv}">...</td>
+            <td th:utext="${naruceniProizvod.proizvod.cena}">...</td>
+            <td th:utext="${naruceniProizvod.kolicina}">...</td>
+            <td th:utext="${naruceniProizvod.narudzbenica.id}">...</td>
+
+<!--            <td><a th:href="@{/proizvodi/edit/{proizvodId}(proizvodId=${proizvod.id})}" th:text="Edit">Title ...</a></td>-->
+<!--            <td><a th:href="@{/proizvodi/delete/{proizvodId}(proizvodId=${proizvod.id})}" th:text="Delete">Title ...</a></td>-->
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

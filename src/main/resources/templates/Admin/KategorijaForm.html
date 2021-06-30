@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container">
+
+<!--    <header th:replace="index :: header"></header>-->
+
+    <div class="row">
+        <h1>Kategorije</h1>
+    </div>
+
+
+    <form th:action="@{/admin/kategorije/form}" th:object="${kategorijaForm}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+
+        <div class="form-group">
+            <label>Naziv</label>
+            <input class="form-control" type="text" th:field="*{naziv}"/>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Snimi</button>
+
+        <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;"></div>
+    </form>
+
+</div>
+
+<br>
+
+</body>
+</html>

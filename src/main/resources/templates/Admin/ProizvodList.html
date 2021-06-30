@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="index :: head"> </head>
+<body>
+<div class="container">
+
+        <header th:replace="index :: header"></header>
+
+    <div class="row">
+        <h1>Proizvodi</h1>
+    </div>
+
+    <div class="row">
+        <a class="btn btn-success" href="/admin/proizvodi/form">Dodaj</a>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Naziv</th>
+            <th>Opis</th>
+            <th>Cena</th>
+            <th>Kategorija</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="proizvod : ${proizvodi}">
+            <td th:utext="${proizvod.id}">...</td>
+            <td th:utext="${proizvod.naziv}">...</td>
+            <td th:utext="${proizvod.opis}">...</td>
+            <td th:utext="${proizvod.cena}">...</td>
+            <td th:utext="${proizvod.kategorija.naziv}">...</td>
+
+            <td><a th:href="@{/admin/proizvodi/edit/{proizvodId}(proizvodId=${proizvod.id})}" th:text="Edit">Title ...</a></td>
+            <td><a th:href="@{/admin/proizvodi/delete/{proizvodId}(proizvodId=${proizvod.id})}" th:text="Delete">Title ...</a></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container">
+
+    <!--    <header th:replace="index :: header"></header>-->
+
+    <div class="row">
+        <h1>Proizvodi</h1>
+    </div>
+
+
+<!--    <form th:action="@{/proizvodi/form}" th:object="${proizvodForm}" method="post">-->
+<!--        <input type="hidden" th:field="*{id}">-->
+
+<!--        <div class="form-group">-->
+<!--            <label>Naziv</label>-->
+<!--            <input class="form-control" type="text" th:field="*{naziv}"/>-->
+
+
+<!--&lt;!&ndash;        <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;            <label>Opis</label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input class="form-control" type="text" th:field="*{opis}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+
+
+<!--            <label>Cena</label>-->
+<!--            <input class="form-control" type="text" th:field="*{cena}"/>-->
+<!--        </div>-->
+
+<!--&lt;!&ndash;        <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;            <label>Kategorija</label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <select class="form-control" th:field="*{kategorijaId}">&ndash;&gt;-->
+<!--&lt;!&ndash;                <option value=""> &#45;&#45;</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                <option th:each="kategorija : ${kategorije}"&ndash;&gt;-->
+<!--&lt;!&ndash;                        th:value="${kategorija.id}"&ndash;&gt;-->
+<!--&lt;!&ndash;                        th:utext="${kategorija.naziv}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </select>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+
+<!--        <button type="submit" class="btn btn-primary">Snimi</button>-->
+
+<!--        <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;"></div>-->
+<!--    </form>-->
+
+    <form th:action="@{/admin/proizvodi/form}" th:object="${proizvodForm}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+
+        <div class="form-group">
+            <label>Naziv</label>
+            <input class="form-control" type="text" th:field="*{naziv}"/><br>
+            <label>Opis</label>
+            <input class="form-control" type="text" th:field="*{opis}"/><br>
+            <label>Cena</label>
+            <input class="form-control" type="text" th:field="*{cena}"/><br>
+            <label>Kategorija</label>
+                <select class="form-control" th:field="*{kategorijaId}">
+<!--                    <option value=""> 0</option>-->
+                            <option th:each="kategorija : ${kategorije}"
+                                    th:value="${kategorija.id}"
+                                    th:utext="${kategorija.naziv}"> </option>
+                </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Snimi</button>
+
+        <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;"></div>
+    </form>
+
+</div>
+
+<br>
+
+</body>
+</html>

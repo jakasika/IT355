@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="index :: head"> </head>
+<body>
+<div class="container">
+
+    <header th:replace="index :: header"></header>
+
+    <div class="row">
+        <h1>Narudzbenice</h1>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Vrene</th>
+            <th>Kupac ID</th>
+            <th>Ukupna cena</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="narudzbenica: ${narudzbenice}">
+            <td th:utext="${narudzbenica.id}">...</td>
+            <td th:utext="${narudzbenica.vreme}">...</td>
+            <div th:if="(${narudzbenica.kupac})">
+                <td th:utext="${narudzbenica.kupac.id}">...</td>
+            </div>
+            <div th:if="(${narudzbenica.ukupnaCena})">
+                <td th:utext="${narudzbenica.ukupnaCena}">...</td>
+            </div>
+
+            <!--            <td th:utext="${narudzbenica.ukupnaCena}">...</td>-->
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

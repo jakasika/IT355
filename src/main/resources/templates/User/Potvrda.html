@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Potvrda</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+<form th:action="@{/proizvodi/kupacform}" th:object="${kupacForm}" method="post">
+    <div class="form-row align-items-center justify-content-center">
+        <input type="hidden" name="narudzbenica" th:value="${narudzbenica.id}">
+
+        <div class="form-group">
+            <div class="col-auto">
+                <h1> Izabrani proizvodi: </h1><br>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Naziv</th>
+                    <th>Opis</th>
+                    <th>Cena</th>
+                    <th>Kolicina</th>
+                    <th>Kategorija</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="nproizvod : ${izabraniproizvodi}">
+                    <td th:utext="${nproizvod.proizvod.naziv}">...</td>
+                    <td th:utext="${nproizvod.proizvod.opis}">...</td>
+                    <td th:utext="${nproizvod.proizvod.cena} + ' din.'">...</td>
+                    <td th:utext="${nproizvod.kolicina}">...</td>
+                    <td th:utext="${nproizvod.proizvod.kategorija.naziv}">...</td>
+                    <td><input type="hidden" name="proizvodi" th:value="${nproizvod.proizvod.id}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="form-group">
+                <div class="col-auto">
+                    <h3>Unesite vase informacije:</h3><br><br>
+                </div>
+
+                <div class="col-auto">
+                    <label>Ime</label>
+                    <input class="form-control"type="text" th:field="*{ime}"/><br>
+                </div>
+                <div class="col-auto">
+                    <label>Prezime</label>
+                    <input class="form-control" type="text" th:field="*{prezime}"/><br>
+                </div>
+                <div class="col-auto">
+                    <label>Adresa</label>
+                    <input class="form-control" type="text" th:field="*{email}"/>
+                </div>
+
+            </div>
+            <div class="col-auto">
+                <!--        <label> Potvrdite porudzbinu </label><br>-->
+                <button type="submit" class="btn btn-primary">Potvrdi</button>
+            </div>
+
+            <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;"></div>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

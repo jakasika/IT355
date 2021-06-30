@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+
+    <!--    <header th:replace="index :: header"></header>-->
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<!--            <form class="form-inline my-2 my-lg-0">-->
+                <a class="btn btn-primary" href="/login" role="button">Admin</a>
+                <a class="btn btn-primary" href="/logout" role="button">Logout</a>
+<!--            </form>-->
+        </div>
+    </nav>
+
+    <div class="row">
+        <h1 justify-content-center>Proizvodi</h1>
+    </div>
+
+
+    <form th:action="@{/proizvodi/potvrda}" method="POST">
+        <button type="submit" class="btn btn-danger">Poruci</button>
+        <div class="container">
+            <!--            <h2 th:utext="${kategorija.naziv}"></h2>-->
+            <div class="card-group">
+
+                <div th:each="k : ${kategorije}">
+                    <div class="title">
+                        <h1 th:utext="${k.naziv}"></h1><br>
+                    </div>
+                    <div class="row">
+
+                        <div th:each="proizvod : ${proizvodi}">
+                            <div th:if="(${proizvod.kategorija.naziv}  == ${k.naziv})">
+                                <div class="card border-danger mb-3" style="width: 250px; height: 500px; border-spacing: 10px">
+                                    <div class="card-block">
+                                        <div class="card text-center">
+                                            <h5 class="card-title" th:utext="${proizvod.naziv}"></h5>
+                                            <div class="card-body">
+                                                <img class="card-img-top" width="300" height="200"
+                                                     th:src="@{/images/food.jpg}"/>
+                                                <p class="card-text" th:utext="${proizvod.opis}"></p>
+
+                                                <!--                                            <p class="card-text" th:utext="${proizvod.kategorija.naziv}"></p>-->
+                                            </div>
+                                            <div class="blockquote-footer">
+                                                <p class="card-text" th:utext="${proizvod.cena}"></p>
+                                                <label>Izaberite kolicinu</label>
+                                                <select name="kolicina">
+                                                    <option name="kolicina" th:each="i : ${#numbers.sequence(0, 10)}"
+                                                            th:value="${proizvod.id + ':' + i}" th:text="${i}">
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>
